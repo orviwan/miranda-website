@@ -1,0 +1,31 @@
+{
+  "name": "eleventy-netlify-boilerplate",
+  "version": "1.0.2",
+  "description": "",
+  "scripts": {
+    "build": "npx eleventy",
+    "watch": "npx @11ty/eleventy --serve",
+    "debug": "DEBUG=* npx eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate"
+  },
+  "author": {
+    "name": "Jon Barlow",
+    "email": "orviwan@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "luxon": "^1.21.3",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^5.2.5"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "bootstrap": "^4.4.1",
+    "html-minifier": "^4.0.0",
+    "uglify-es": "^3.3.9"
+  }
+}

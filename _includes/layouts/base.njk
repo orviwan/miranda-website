@@ -1,0 +1,16 @@
+<!doctype html>
+<html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
+
+  {% include "components/head.njk" %}
+
+  <body id="page-top">
+
+    {% include "components/nav.njk" %}
+
+    {{ layoutContent | safe }}
+
+    {% include "components/footer.njk" %}
+
+  </body>
+
+</html>

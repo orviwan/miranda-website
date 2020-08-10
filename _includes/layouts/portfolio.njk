@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+section: portfolio
+---
+
+{% set title %}{{ title }} ({{ year }}){% endset %}
+
+<main id="main">
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section class="portfolio-details">
+      <div class="container">
+
+        <div class="portfolio-details-container">
+
+          <div class="owl-carousel portfolio-details-carousel">
+            {% if carousel1 %}
+              <img src="{{ carousel1 }}" class="img-fluid" alt="Carousel Image" />
+            {% endif %}
+            {% if carousel2 %}
+              <img src="{{ carousel2 }}" class="img-fluid" alt="Carousel Image" />
+            {% endif %}
+            {% if carousel3 %}
+              <img src="{{ carousel3 }}" class="img-fluid" alt="Carousel Image" />
+            {% endif %}
+          </div>
+
+          <div class="portfolio-info">
+            <h3>Project Details</h3>
+            <p>{{ subtitle | safe }}</p>
+          </div>
+
+        </div>
+
+        <div class="portfolio-description">
+          <h2>{{ title | safe }}</h2>
+          {{ layoutContent | safe }}
+        </div>
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+
+{% include "components/portfolio.njk" %}
+</main>
+
+

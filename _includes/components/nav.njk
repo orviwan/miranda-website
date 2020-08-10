@@ -1,0 +1,22 @@
+<!-- ======= Navbar ======= -->
+<nav id="main-nav" {% if section != "home" %} class="subpage-nav" {% endif %}>
+  <div class="row">
+    <div class="container">
+
+      <div class="logo">
+        <a href="/"><img src="/_includes/assets/img/logo.png" alt="logo"></a>
+      </div>
+
+      <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+      <ul class="nav-menu list-unstyled">
+        {%- for nav in collections.nav | sort(attribute="date") -%}
+          <li>
+            <a class="smoothScroll {% if nav.url == page.url %}active{% endif %}" href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+    </div>
+  </div>
+</nav><!-- End Navbar -->

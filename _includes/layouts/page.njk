@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+section: page
+---
+{% include "components/pagetitle.njk" %}
+<div class="container d-flex align-items-center flex-column">
+  <div class="col-lg-12">
+    <div class="wrapper">
+      <div class="content-main">
+        {{ layoutContent | safe }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{% for item in portfoliolist | reverse %}
+
+  <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+    <img src="{{ item.data.thumbnail }}" class="img-fluid" alt="{{ item.data.title | safe }}">
+    <div class="portfolio-info">
+      <h4><a href="{{ item.url | url }}">{{ item.data.title | safe }}</a></h4>
+      <p><a href="{{ item.url | url }}">{{ item.data.subtitle | safe }}</a></p>
+      <a href="{{ item.url | url }}" class="details-link" title="Read More Details"><i class="bx bx-link"></i></a>
+    </div>
+  </div>
+
+{% endfor %}
