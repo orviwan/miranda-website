@@ -7,7 +7,7 @@ import Work from "/admin/preview-templates/work.js";
 CMS.registerPreviewTemplate("pages", Page);
 CMS.registerPreviewTemplate("work", Work);
 
-CMS.registerPreviewStyle("/_includes/assets/css/style.css");
+CMS.registerPreviewStyle("/assets/css/style.css");
 // Register any CSS file on the home page as a preview style
 fetch("/")
   .then(response => response.text())

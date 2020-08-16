@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>91 Dub v3.0 Screenshot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/spectrum.css">
+</head>
+
+<body>
+
+<div class="container">
+<h2>Live Preview</h2>
+<p>Testing Live Preview for Pebble config using HTML 5 Canvas and Javascript.</p>
+<form id="configure-form" class="form-configure well" action="#" method="POST">
+<canvas id="canvas" width="144" height="168">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br/>
+
+<label><input name="realcolour" id="realcolour" type="checkbox" onClick="draw()">&nbsp Use real colour preview</label><br />
+
+
+<h4>Design a Theme</h4>
+
+          <div>
+
+              <label><input name="bg4color" id="bg4color" class="picker">&nbsp;Background</label><br />
+              <label><input name="d9color" id="d9color" class="picker">&nbsp;Branding Text</label><br />
+
+              <h5>Centre Panel</h5>
+              <label><input name="bg1color" id="bg1color" class="picker">&nbsp;Outer Border</label><br />
+              <label><input name="bg2color" id="bg2color" class="picker">&nbsp;Inner Border</label><br />
+              <label><input name="bg3color" id="bg3color" class="picker">&nbsp;Inner Panel</label><br />
+
+              <label><input name="t1color" id="t1color" class="picker">&nbsp;Date</label><br />
+              <label><input name="t2color" id="t2color" class="picker">&nbsp;AM/PM/24H</label><br />
+
+              <label><input name="t4color" id="t4color" class="picker">&nbsp;Time</label><br />
+              <label><input name="t3color" id="t3color" class="picker">&nbsp;Time Shadow</label><br />
+
+              <h5>Lines</h5>
+              <label><input name="d1color" id="d1color" class="picker">&nbsp;Line Top</label><br />
+              <label><input name="d2color" id="d2color" class="picker">&nbsp;Line Bottom</label><br />
+
+              <h5>Water Resist</h5>
+              <label><input name="d3color" id="d3color" class="picker">&nbsp;Box Border</label><br />
+              <label><input name="d4color" id="d4color" class="picker">&nbsp;Box Fill</label><br />
+              <label><input name="d5color" id="d5color" class="picker">&nbsp;WR Letters</label><br />
+              <label><input name="d6color" id="d6color" class="picker">&nbsp;Water Resist Text</label><br />
+
+              <h5>Buttons</h5>
+              <label><input name="d7color" id="d7color" class="picker">&nbsp;Button Labels</label><br />
+              <label><input name="d8color" id="d8color" class="picker">&nbsp;Button Arrows</label><br />
+              
+    
+              <h5>Battery</h5>
+              <label><input name="bi1color" id="bi1color" class="picker">&nbsp;Battery</label><br />
+              <label><input name="bi2color" id="bi2color" class="picker">&nbsp;Battery Warning</label><br />
+              <label><input name="bi3color" id="bi3color" class="picker">&nbsp;Battery Critical</label><br />
+              <label><input name="bi4color" id="bi4color" class="picker">&nbsp;Battery Charging</label><br />
+
+              <h5>Bluetooth</h5>
+              <label><input name="bl1color" id="bl1color" class="picker">&nbsp;Circle Connected</label><br />
+              <label><input name="bl2color" id="bl2color" class="picker">&nbsp;Icon Connected</label><br />
+              <label><input name="bl3color" id="bl3color" class="picker">&nbsp;Circle Disconnected</label><br />
+              <label><input name="bl4color" id="bl4color" class="picker">&nbsp;Icon Disconnected</label><br />
+
+          </div>
+</form>
+
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>  
+<script type="text/javascript" src="js/spectrum.js"></script>
+<script type="text/javascript" src="js/gcolor.js"></script>
+
+<script>
+
+var img = new Image();
+img.src = "91dub.png";
+img.onload = function() {
+        draw();
+      };
+
+
+function draw(){
+
+/*
+    // Get the colours from our Spectrum pickers
+/*
+BACKGROUND
+bg1 Centre Panel Outer Stroke
+bg2 Centre Panel Stroke
+bg3 Centre Panel
+bg4 Background Color
+*/
+      var bg1color = $("#bg1color").spectrum("get").toHex();
+      var bg2color = $("#bg2color").spectrum("get").toHex();
+      var bg3color = $("#bg3color").spectrum("get").toHex();
+      var bg4color = $("#bg4color").spectrum("get").toHex();
+
+/*
+TIME
+t1  Date
+t2  AM/PM/24H Indicator
+t3  Clock Shadow
+t4  Clock
+*/
+      var t1color = $("#t1color").spectrum("get").toHex();
+      var t2color = $("#t2color").spectrum("get").toHex();
+      var t3color = $("#t3color").spectrum("get").toHex();
+      var t4color = $("#t4color").spectrum("get").toHex();
+
+/*
+DECORATIONS
+d1  Horizontal Line Top
+d2  Horizontal Line Bottom
+d3  Water Resist Box Stroke
+d4  Water Resist Box Fill
+d5  WR Letters
+d6  Water Resist Text
+d7  Button Labels
+d8  Button Icons
+d9  Branding Text
+*/
+      var d1color = $("#d1color").spectrum("get").toHex();
+      var d2color = $("#d2color").spectrum("get").toHex();
+      var d3color = $("#d3color").spectrum("get").toHex();
+      var d4color = $("#d4color").spectrum("get").toHex();
+      var d5color = $("#d5color").spectrum("get").toHex();
+      var d6color = $("#d6color").spectrum("get").toHex();
+      var d7color = $("#d7color").spectrum("get").toHex();
+      var d8color = $("#d8color").spectrum("get").toHex();
+      var d9color = $("#d9color").spectrum("get").toHex();
+
+
+
+/*
+BATTERY
+bi1 Battery Indicator
+bi2 Battery Indicator Warning
+bi3 Battery Indicator Critical
+bi4 Battery Charging
+*/
+      var bi1color = $("#bi1color").spectrum("get").toHex();
+
+/*
+BLUETOOTH
+bl1 Bluetooth Circle Connected
+bl2 Bluetooth Icon Connected
+bl3 Bluetooth Circle Disconnected
+bl4 Bluetooth Icon Disconnected
+*/
+      var bl1color = $("#bl1color").spectrum("get").toHex();
+      var bl2color = $("#bl2color").spectrum("get").toHex();
+
+
+
+    // Get a handle to the checkbox
+    var realcolour = document.getElementById("realcolour");
+
+    if (realcolour.checked){
+        // Convert to realistic pebble colours
+        bg1color = GColor.toSunnyHex(bg1color);
+	bg2color = GColor.toSunnyHex(bg2color);
+	bg3color = GColor.toSunnyHex(bg3color);
+	bg4color = GColor.toSunnyHex(bg4color);
+
+	t1color = GColor.toSunnyHex(t1color);
+	t2color = GColor.toSunnyHex(t2color);
+	t3color = GColor.toSunnyHex(t3color);
+	t4color = GColor.toSunnyHex(t4color);
+
+	d1color = GColor.toSunnyHex(d1color);
+	d2color = GColor.toSunnyHex(d2color);
+	d3color = GColor.toSunnyHex(d3color);
+	d4color = GColor.toSunnyHex(d4color);
+	d5color = GColor.toSunnyHex(d5color);
+	d6color = GColor.toSunnyHex(d6color);
+	d7color = GColor.toSunnyHex(d7color);
+	d8color = GColor.toSunnyHex(d8color);
+	d9color = GColor.toSunnyHex(d9color);
+
+	bi1color = GColor.toSunnyHex(bi1color);
+
+	bl1color = GColor.toSunnyHex(bl1color);
+	bl2color = GColor.toSunnyHex(bl2color);
+
+    };
+
+
+    // Get a handle to the Canvas and Context
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+
+    // Draw the original image
+    ctx.drawImage(img, 0, 0);
+
+
+    // Read the pixel data from the original image    
+    var imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    var data = imgData.data;
+
+
+    // Loop through the pixel data
+    for(var i=0; i<data.length; i+=4) {
+
+	// Get the individual RGB values
+        var red = data[i];
+	var green = data[i+1];
+	var blue = data[i+2];
+	var alpha = data[i+3];
+
+	var rgbcolor = red+""+green+""+blue;
+
+	switch(rgbcolor){
+
+		case "255255255":
+	    	data[i]   = parseInt(bg1color.substring(0,2),16);
+	    	data[i+1] = parseInt(bg1color.substring(2,4),16);
+	    	data[i+2] = parseInt(bg1color.substring(4,6),16);
+		break;
+
+		case "170170255":
+	    	data[i]   = parseInt(bg2color.substring(0,2),16);
+	    	data[i+1] = parseInt(bg2color.substring(2,4),16);
+	    	data[i+2] = parseInt(bg2color.substring(4,6),16);
+		break;
+	
+		case "170170170":
+	    	data[i]   = parseInt(bg3color.substring(0,2),16);
+	    	data[i+1] = parseInt(bg3color.substring(2,4),16);
+	    	data[i+2] = parseInt(bg3color.substring(4,6),16);
+		break;
+
+		case "000":
+	    	data[i]   = parseInt(bg4color.substring(0,2),16);
+	    	data[i+1] = parseInt(bg4color.substring(2,4),16);
+	    	data[i+2] = parseInt(bg4color.substring(4,6),16);
+		break;
+		
+		case "00255":
+	    	data[i]   = parseInt(t1color.substring(0,2),16);
+	    	data[i+1] = parseInt(t1color.substring(2,4),16);
+	    	data[i+2] = parseInt(t1color.substring(4,6),16);
+		break;
+
+		case "1700170":
+	    	data[i]   = parseInt(t2color.substring(0,2),16);
+	    	data[i+1] = parseInt(t2color.substring(2,4),16);
+	    	data[i+2] = parseInt(t2color.substring(4,6),16);
+		break;
+
+		case "8500":
+	    	data[i]   = parseInt(t3color.substring(0,2),16);
+	    	data[i+1] = parseInt(t3color.substring(2,4),16);
+	    	data[i+2] = parseInt(t3color.substring(4,6),16);
+		break;
+
+		case "25500":
+	    	data[i]   = parseInt(t4color.substring(0,2),16);
+	    	data[i+1] = parseInt(t4color.substring(2,4),16);
+	    	data[i+2] = parseInt(t4color.substring(4,6),16);
+		break;
+
+		case "085170":
+		data[i]   = parseInt(d1color.substring(0,2),16);
+	    	data[i+1] = parseInt(d1color.substring(2,4),16);
+	    	data[i+2] = parseInt(d1color.substring(4,6),16);
+		break;
+
+		case "0170255":
+		data[i]   = parseInt(d2color.substring(0,2),16);
+	    	data[i+1] = parseInt(d2color.substring(2,4),16);
+	    	data[i+2] = parseInt(d2color.substring(4,6),16);
+		break;
+
+		case "1701700":
+		data[i]   = parseInt(d3color.substring(0,2),16);
+	    	data[i+1] = parseInt(d3color.substring(2,4),16);
+	    	data[i+2] = parseInt(d3color.substring(4,6),16);
+		break;
+
+		case "170255170":
+		data[i]   = parseInt(d4color.substring(0,2),16);
+	    	data[i+1] = parseInt(d4color.substring(2,4),16);
+	    	data[i+2] = parseInt(d4color.substring(4,6),16);
+		break;
+
+		case "2550255":
+		data[i]   = parseInt(d5color.substring(0,2),16);
+	    	data[i+1] = parseInt(d5color.substring(2,4),16);
+	    	data[i+2] = parseInt(d5color.substring(4,6),16);
+		break;
+
+		case "025585":
+		data[i]   = parseInt(d6color.substring(0,2),16);
+	    	data[i+1] = parseInt(d6color.substring(2,4),16);
+	    	data[i+2] = parseInt(d6color.substring(4,6),16);
+		break;
+
+		case "2558585":
+		data[i]   = parseInt(d7color.substring(0,2),16);
+	    	data[i+1] = parseInt(d7color.substring(2,4),16);
+	    	data[i+2] = parseInt(d7color.substring(4,6),16);
+		break;
+
+		case "2552550":
+		data[i]   = parseInt(d8color.substring(0,2),16);
+	    	data[i+1] = parseInt(d8color.substring(2,4),16);
+	    	data[i+2] = parseInt(d8color.substring(4,6),16);
+		break;
+
+		case "2551700":
+		data[i]   = parseInt(d9color.substring(0,2),16);
+	    	data[i+1] = parseInt(d9color.substring(2,4),16);
+	    	data[i+2] = parseInt(d9color.substring(4,6),16);
+		break;
+
+		case "00170":
+		data[i]   = parseInt(bi1color.substring(0,2),16);
+	    	data[i+1] = parseInt(bi1color.substring(2,4),16);
+	    	data[i+2] = parseInt(bi1color.substring(4,6),16);
+		break;
+
+		case "17085255":
+		data[i]   = parseInt(bl1color.substring(0,2),16);
+	    	data[i+1] = parseInt(bl1color.substring(2,4),16);
+	    	data[i+2] = parseInt(bl1color.substring(4,6),16);
+		break;
+
+		case "170255255":
+		data[i]   = parseInt(bl2color.substring(0,2),16);
+	    	data[i+1] = parseInt(bl2color.substring(2,4),16);
+	    	data[i+2] = parseInt(bl2color.substring(4,6),16);
+		break;
+
+
+
+
+
+
+
+	}
+
+
+    }
+
+
+
+    // Push the data back to the canvas
+    ctx.putImageData(imgData, 0, 0);
+
+}
+
+
+// Page onLoad
+$().ready(function () {	
+
+// Setup Spectrum picker with Pebble Time Palette
+$(".picker").spectrum({
+            showPaletteOnly: true,
+            hideAfterPaletteSelect:true,
+            preferredFormat: "hex3",
+            change: function() {
+                draw();
+            },
+            palette: [
+              [ '000', '005', '00a', '00f', '050', '055', '05a', '05f' ],
+              [ '500', '505', '50a', '50f', '550', '555', '55a', '55f' ],
+              [ 'a00', 'a05', 'a0a', 'a0f', 'a50', 'a55', 'a5a', 'a5f' ],
+              [ 'f00', 'f05', 'f0a', 'f0f', 'f50', 'f55', 'f5a', 'f5f' ],
+              [ '0a0', '0a5', '0aa', '0af', '0f0', '0f5', '0fa', '0ff' ],
+              [ '5a0', '5a5', '5aa', '5af', '5f0', '5f5', '5fa', '5ff' ],
+              [ 'aa0', 'aa5', 'aaa', 'aaf', 'af0', 'af5', 'afa', 'aff' ],
+              [ 'fa0', 'fa5', 'faa', 'faf', 'ff0', 'ff5', 'ffa', 'fff' ]
+            ]
+        });
+
+// Setup default colours
+
+settings = {};
+
+          settings.bg1color = GColor.fromHex("FFFFFF");
+          settings.bg2color = GColor.fromHex("000000");
+          settings.bg3color = GColor.fromHex("FFFFFF");
+          settings.bg4color = GColor.fromHex("000000");
+          
+          settings.bi1color = GColor.fromHex("000000");
+          settings.bi2color = GColor.fromHex("000000");
+          settings.bi3color = GColor.fromHex("000000");
+          settings.bi4color = GColor.fromHex("000000");
+
+          settings.bl1color = GColor.fromHex("FFFFFF");
+          settings.bl2color = GColor.fromHex("000000");
+          settings.bl3color = GColor.fromHex("FFFFFF");
+          settings.bl4color = GColor.fromHex("FFFFFF");
+
+          settings.d1color = GColor.fromHex("FFFFFF");
+          settings.d2color = GColor.fromHex("FFFFFF");
+          settings.d3color = GColor.fromHex("FFFFFF");
+          settings.d4color = GColor.fromHex("000000");
+          settings.d5color = GColor.fromHex("FFFFFF");
+          settings.d6color = GColor.fromHex("FFFFFF");
+          settings.d7color = GColor.fromHex("FFFFFF");
+          settings.d8color = GColor.fromHex("FFFFFF");
+          settings.d9color = GColor.fromHex("FFFFFF");
+
+          settings.t1color = GColor.fromHex("000000");
+          settings.t2color = GColor.fromHex("000000");
+          settings.t3color = GColor.fromHex("FFFFFF");
+          settings.t4color = GColor.fromHex("000000");
+
+$("#bg1color").spectrum("set", '#' + GColor.toHex(settings.bg1color));
+	        $("#bg2color").spectrum("set", '#' + GColor.toHex(settings.bg2color));
+	        $("#bg3color").spectrum("set", '#' + GColor.toHex(settings.bg3color));
+	        $("#bg4color").spectrum("set", '#' + GColor.toHex(settings.bg4color));
+
+	        $("#bi1color").spectrum("set", '#' + GColor.toHex(settings.bi1color));
+	        $("#bi2color").spectrum("set", '#' + GColor.toHex(settings.bi2color));
+	        $("#bi3color").spectrum("set", '#' + GColor.toHex(settings.bi3color));
+	        $("#bi4color").spectrum("set", '#' + GColor.toHex(settings.bi4color));
+
+	        $("#bl1color").spectrum("set", '#' + GColor.toHex(settings.bl1color));
+	        $("#bl2color").spectrum("set", '#' + GColor.toHex(settings.bl2color));
+	        $("#bl3color").spectrum("set", '#' + GColor.toHex(settings.bl3color));
+	        $("#bl4color").spectrum("set", '#' + GColor.toHex(settings.bl4color));
+
+	        $("#d1color").spectrum("set", '#' + GColor.toHex(settings.d1color));
+	        $("#d2color").spectrum("set", '#' + GColor.toHex(settings.d2color));
+	        $("#d3color").spectrum("set", '#' + GColor.toHex(settings.d3color));
+	        $("#d4color").spectrum("set", '#' + GColor.toHex(settings.d4color));
+	        $("#d5color").spectrum("set", '#' + GColor.toHex(settings.d5color));
+	        $("#d6color").spectrum("set", '#' + GColor.toHex(settings.d6color));
+          $("#d7color").spectrum("set", '#' + GColor.toHex(settings.d7color));
+          $("#d8color").spectrum("set", '#' + GColor.toHex(settings.d8color));
+          $("#d9color").spectrum("set", '#' + GColor.toHex(settings.d9color));
+
+	        $("#t1color").spectrum("set", '#' + GColor.toHex(settings.t1color));
+	        $("#t2color").spectrum("set", '#' + GColor.toHex(settings.t2color));
+	        $("#t3color").spectrum("set", '#' + GColor.toHex(settings.t3color));
+	        $("#t4color").spectrum("set", '#' + GColor.toHex(settings.t4color));
+
+
+
+
+});
+
+
+</script>
+
+</body>
+</html>
