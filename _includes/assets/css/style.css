@@ -127,7 +127,6 @@ p {
   padding-left: 10px;
   margin: 0 0 25px 0;
   line-height: 14px;
-  text-transform: uppercase;
 }
 
 .form-control:focus {
@@ -365,6 +364,7 @@ nav ul li a {
 #about .about-descr .p-heading {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
+  line-height: 1.5em;
   text-align: left;
 }
 
@@ -532,7 +532,7 @@ nav ul li a {
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details {
-  padding-top: 30px;
+  padding-top: 90px;
 }
 
 .portfolio-details .portfolio-details-container {
