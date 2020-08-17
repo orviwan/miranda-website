@@ -8,6 +8,21 @@ backend:
 media_folder: "/assets/img" # Media files will be stored in the repo under images/uploads
 
 collections:
+  - name: "homepage"
+    label: "Homepage"
+    files:
+    - label: "Homepage"
+      name: "home"
+      file: "homepage/home.md"
+      fields:
+        - { label: "Title", name: "title", widget: "string" }
+        - { label: "Publish Date", name: "date", widget: "datetime" }
+        - { label: "Permalink", name: "permalink", widget: "string" }
+        - { label: "Navigation Title", name: "navtitle", widget: "string" }
+        - { label: "Tags", name: "tags", widget: "hidden", default: "nav" }
+        - { label: "Skills", name: "skills", widget: "string" }
+        - { label: "About Heading", name: "aboutheading", widget: "string" }
+        - { label: "Body", name: "body", widget: "markdown" }
   # Our blog posts
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Post" # Used in the UI
